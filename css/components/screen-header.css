@@ -11,3 +11,16 @@
 .screen-header__icons span {
     margin-left: 25px;
 }
+
+@keyframes ratateCog {
+    from {
+        transform: none;
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+.screen-header__icons .fa-gear:hover {
+    animation: ratateCog 1s linear infinite;
+}

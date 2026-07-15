@@ -1,5 +1,3 @@
-
-
 .recommended-friends {
     padding: 25px 0px;
     margin: 25px 0px;
@@ -80,6 +78,21 @@
     border-radius: 10px;
 }
 
+@keyframes heartBeats {
+    0% {
+        color: white;
+        transform: none;
+    }
+    50% {
+        transform: scale(2);
+        color: tomato;
+    }
+    100% {
+        color: white;
+        transform: none;
+    }
+}
+
 .open-post__heart-count {
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
@@ -93,6 +106,11 @@
     right: 10px;
 
     font-size: 14px;
+}
+
+.open-post__heart-count .fa-heart:hover {
+    will-change: transform;
+    animation: heartBeats 1s ease-in-out infinite;
 }
 
 .open-post__heart-count span {
