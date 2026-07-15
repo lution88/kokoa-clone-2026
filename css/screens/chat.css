@@ -1,6 +1,6 @@
 #chat-screen {
     background-color: #abc1d1;
-    height: 1100vh;
+    height: 100vh;
 }
 
 #chat-screen .alt-header,
@@ -17,12 +17,23 @@
 #chat-screen .status-bar {
     z-index: 2;
 }
-.main-chat {
-    margin-top: 150px;
 
+@keyframes fadeIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.main-chat {
+    margin-top: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: fadeIn 1s linear;
 }
 
 .chat__timestamp {
@@ -34,6 +45,24 @@
     margin-bottom: 25px;
 }
 
+@keyframes fadeinSideLeft {
+    from {
+        visibility: none;
+        transform: translateX(-50px);
+    }
+    to {
+        transform: none;
+    }
+}
+@keyframes fadeinSideRight {
+    from {
+        visibility: none;
+        transform: translateX(50px);
+    }
+    to {
+        transform: none;
+    }
+}
 .message-row {
     width: 100%;
     display: flex;
@@ -47,8 +76,14 @@
     border-radius: 35%;
     margin-right: 15px;
 }
+
+.message-row__content {
+    animation: fadeinSideLeft 1s linear;
+}
+
 .message-row--own {
     justify-content: flex-end;
+    animation: fadeinSideRight 1s linear;
 }
 .message-row--own .message__bubble {
     background-color: var(--yellow);
@@ -84,15 +119,17 @@
 }
 
 .reply {
+    background-color: white;
+    padding: 5px 25px;
+
     position: fixed;
     bottom: 0px;
     width: 100%;
-    background-color: white;
+    box-sizing: border-box;
+
     display: flex;
     justify-content: space-between;
-    padding: 5px 25px;
     align-items: center;
-    box-sizing: border-box;
 }
 .reply .reply__column:first-child {
     width: 10%;
@@ -107,6 +144,8 @@
     width: 100%;
     border: var(--border-bottom);
     border-radius: 20px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 .reply i {
@@ -116,12 +155,12 @@
 .reply__column:last-child button,
 .reply__column:last-child > i {
     position: absolute;
-    right: -25px;
+    right: 0px;
     top: 1px;
 }
 .reply__column:last-child > i {
     font-size: 22px;
-    right: 25px;
+    right: 45px;
     top: 22px;
 }
 .reply__column:last-child button {
@@ -139,4 +178,25 @@
 
 .reply__column button i {
     opacity: 1;
+}
+
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-face-smile,
+.reply:focus-within button {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-face-smile,
+.reply:focus-within button {
+    opacity: 0;
+}
+
+.reply:focus-within input {
+    width: 96vw;
+    transform: translateX(-13%) translateY(-80px);
+}
+
+.reply:focus-within {
+    transform: translateY(80px);
 }
